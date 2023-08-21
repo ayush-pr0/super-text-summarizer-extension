@@ -1,10 +1,8 @@
 import { useContext } from "react";
 import { linkIcon } from "../../assets";
 import superContext from "../../utils/superContext";
-import useOnlineStatus from "../../utils/useOnlineStatus";
 
 const InputForm = () => {
-  const onlineStatus = useContext(useOnlineStatus);
   const {
     article,
     setArticle,
@@ -18,8 +16,9 @@ const InputForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // console.log(article.type, type);
     const existingArticle = allArticles.find(
-      (item) => item.url === article.url
+      (item) => item.url == article.url && item.type == type
     );
 
     if (existingArticle) return setArticle(existingArticle);
@@ -28,7 +27,7 @@ const InputForm = () => {
 
     const len = type == "Summary" ? 3 : 1;
 
-    const requestUrl = `https://article-extractor-and-summarizer.p.rapidapi.com/summarize?url=${article.url}&length=1`;
+    const requestUrl = `https://article-extractor-and-summarizer.p.rapidapi.com/summarize?url=${article.url}&length=${len}`;
     const options = {
       method: "GET",
       headers: {
@@ -40,15 +39,17 @@ const InputForm = () => {
     try {
       const response = await fetch(requestUrl, options);
       const data = await response.json();
-      console.log(type);
+
       if (data?.summary) {
+        if (type == "Highlights") {
+          data.summary = data.summary.split(".").join(".\n\n");
+        }
         const newArticle = {
           url: article.url,
-          summary: data.summary,
+          result: data.summary,
           type,
         };
         const updatedAllArticles = [newArticle, ...allArticles];
-        console.log(newArticle);
         // update state and local storage
         setArticle(newArticle);
         setAllArticles(updatedAllArticles);

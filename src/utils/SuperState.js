@@ -4,17 +4,21 @@ import SuperContext from "./superContext";
 const SuperState = ({ children }) => {
   const [article, setArticle] = useState({
     url: "",
-    summary: "",
+    result: "",
+    type: "Summary",
   });
   const [type, setType] = useState("Summary");
   const [isLoding, setIsLoding] = useState(false);
   const [error, setError] = useState("");
   const [allArticles, setAllArticles] = useState([]);
-  const [copied, setCopied] = useState("");
+  const [copied, setCopied] = useState({
+    url: "",
+    type: "",
+  });
 
   // copy the url and toggle the icon for user feedback
-  const handleCopy = (copyUrl) => {
-    setCopied(copyUrl);
+  const handleCopy = (copyUrl, type) => {
+    setCopied({ url: copyUrl, type });
     navigator.clipboard.writeText(copyUrl);
     setTimeout(() => setCopied(false), 3000);
   };

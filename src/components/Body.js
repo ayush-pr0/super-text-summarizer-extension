@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import InputForm from "./Body/InputForm";
 import History from "./Body/History";
-import Summary from "./Body/Summary";
+import Result from "./Body/Result";
 import superContext from "../utils/superContext";
 
 const Body = () => {
@@ -24,7 +24,7 @@ const Body = () => {
         <InputForm />
         <History />
       </div>
-      <Summary />
+      <Result />
     </section>
   );
 };
