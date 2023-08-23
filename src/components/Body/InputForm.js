@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { linkIcon } from "../../assets";
+import { linkIcon, logo } from "../../assets";
 import superContext from "../../utils/superContext";
+require("dotenv").config();
 
 const InputForm = () => {
   const {
@@ -8,6 +9,7 @@ const InputForm = () => {
     setArticle,
     type,
     setType,
+    isLoding,
     setIsLoding,
     setError,
     allArticles,
@@ -16,7 +18,12 @@ const InputForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(article.type, type);
+    if (article.url.length == 0 || article.url == "unknown/url") {
+      setError(
+        "Oop's..!! Url field is empty or unknown url found. Please re-click on the SuperText extension"
+      );
+      return;
+    }
     const existingArticle = allArticles.find(
       (item) => item.url == article.url && item.type == type
     );
@@ -24,20 +31,27 @@ const InputForm = () => {
     if (existingArticle) return setArticle(existingArticle);
     setIsLoding(true);
     setError("");
-
     const len = type == "Summary" ? 3 : 1;
 
     const requestUrl = `https://article-extractor-and-summarizer.p.rapidapi.com/summarize?url=${article.url}&length=${len}`;
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "7d70396316msh66b6dba4cffdefep1f6464jsn0e0b16be5eda",
+        "X-RapidAPI-Key": process.env.ARTICLE_SUMMARIZER_API,
         "X-RapidAPI-Host": "article-extractor-and-summarizer.p.rapidapi.com",
       },
     };
 
     try {
       const response = await fetch(requestUrl, options);
+      if (response.status === 404) {
+        throw Error("Page not found");
+      } else if (response.status === 500) {
+        throw Error("Server error");
+      } else if (!response.ok) {
+        throw Error(`HTTP error! status: ${response.status}`);
+      }
+
       const data = await response.json();
 
       if (data?.summary) {
@@ -54,15 +68,9 @@ const InputForm = () => {
         setArticle(newArticle);
         setAllArticles(updatedAllArticles);
         localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
-      } else if (data?.error) {
-        setError(data.error);
       }
     } catch (error) {
-      if (error.message == "Failed to fetch")
-        setError(
-          "Something got wrong!! Please check your internet connection.."
-        );
-      else setError(`Something got wrong!! ${error.message}`);
+      setError(error.message);
     }
     setIsLoding(false);
   };
@@ -84,15 +92,16 @@ const InputForm = () => {
 
         <input
           type="url"
-          placeholder="Paste the article link"
+          placeholder="WebPage link"
           value={article.url}
           onChange={(e) => setArticle({ url: e.target.value })}
           onKeyDown={handleKeyDown}
           required
           className="url_input peer"
+          disabled={true}
         />
 
-        <button type="submit" className="submit_btn">
+        <button type="submit" className="submit_btn" disabled={isLoding}>
           <i className="fa-brands fa-searchengin rounded-2xl"></i>
         </button>
       </div>

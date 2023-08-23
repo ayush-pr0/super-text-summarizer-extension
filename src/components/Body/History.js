@@ -3,16 +3,19 @@ import { copy, tick } from "../../assets";
 import superContext from "../../utils/superContext";
 
 const History = () => {
-  const { setArticle, allArticles, type, setType, copied, handleCopy } =
+  const { setArticle, allArticles, copied, handleCopy, setError } =
     useContext(superContext);
   return (
-    <div className="flex flex-col gap-1 max-h-56 overflow-y-auto">
-      {allArticles.reverse().map((article, index) => (
+    <div className="flex flex-col gap-1 max-h-40 overflow-y-auto">
+      {allArticles.map((article, index) => (
         <div key={`${index}`} className="link_card">
           <p className="articleType">{article.type}</p>
           <p
             className="flex-1 font-satoshi text-blue-700 font-medium text-sm truncate cursor-pointer"
-            onClick={() => setArticle(article)}
+            onClick={() => {
+              setArticle(article);
+              setError("");
+            }}
           >
             {article.url}
           </p>

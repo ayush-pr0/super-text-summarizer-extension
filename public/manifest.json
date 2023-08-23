@@ -1,0 +1,21 @@
+{
+    "name": "My Extension",
+    "version": "1.0",
+    "manifest_version": 3,
+    "description": "SuperText Summarizer",
+
+    "author": "developer@example.com",
+    "icons": {
+        "32": "logo.png",
+        "128": "logo.png" 
+    },
+    "permissions": ["tabs"],
+    "action": {
+        "default_title": "SuperText Summarizer",
+        "default_popup": "index.html",
+        "default_icons": {
+            "32": "logo.png",
+            "128": "logo.png" 
+        }
+    }
+}

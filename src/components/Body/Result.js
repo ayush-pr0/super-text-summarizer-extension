@@ -10,7 +10,7 @@ const Result = () => {
   return (
     <div className="my-10 max-w-full flex justify-center items-center">
       {isLoding ? (
-        <img src={loader} alt="loader" className="w-20 h-20 object-contain" />
+        <img src={loader} alt="loader" className="w-10 h-10 object-contain" />
       ) : error ? (
         <p className="font-inter font-bold text-black text-center">
           Well, that wasn't supposed to happen...
@@ -28,11 +28,19 @@ const Result = () => {
               </h2>
               <div
                 className="copy_btn"
-                onClick={() => handleCopy(article.result)}
+                onClick={() => handleCopy(article.result, article.type)}
               >
                 <img
-                  src={copied === article.result ? tick : copy}
-                  alt={copied === article.result ? "tick_icon" : "copy_icon"}
+                  src={
+                    copied.url == article.result && copied.type == article.type
+                      ? tick
+                      : copy
+                  }
+                  alt={
+                    copied == article.result && copied.type == article.type
+                      ? "tick_icon"
+                      : "copy_icon"
+                  }
                   className="w-[40%] h-[40%] object-contain"
                 />
               </div>
