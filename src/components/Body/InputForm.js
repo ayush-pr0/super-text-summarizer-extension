@@ -7,6 +7,7 @@ const InputForm = () => {
   const {
     article,
     setArticle,
+    pageData,
     type,
     setType,
     isLoding,
@@ -31,9 +32,11 @@ const InputForm = () => {
     if (existingArticle) return setArticle(existingArticle);
     setIsLoding(true);
     setError("");
-    const len = type == "Summary" ? 3 : 1;
 
-    const requestUrl = `https://article-extractor-and-summarizer.p.rapidapi.com/summarize?url=${article.url}&length=${len}`;
+    const len = type == "Summary" ? 3 : 1;
+    console.log(len);
+
+    const url = `https://article-extractor-and-summarizer.p.rapidapi.com/summarize?url=${article.url}&length=${len}`;
     const options = {
       method: "GET",
       headers: {
@@ -41,9 +44,10 @@ const InputForm = () => {
         "X-RapidAPI-Host": "article-extractor-and-summarizer.p.rapidapi.com",
       },
     };
+    console.log(pageData);
 
     try {
-      const response = await fetch(requestUrl, options);
+      const response = await fetch(url, options);
       if (response.status === 404) {
         throw Error("Page not found");
       } else if (response.status === 500) {
@@ -53,6 +57,7 @@ const InputForm = () => {
       }
 
       const data = await response.json();
+      console.log(data);
 
       if (data?.summary) {
         if (type == "Highlights") {

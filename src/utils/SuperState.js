@@ -7,6 +7,7 @@ const SuperState = ({ children }) => {
     result: "",
     type: "Summary",
   });
+  const [pageData, setPageData] = useState("");
   const [type, setType] = useState("Summary");
   const [isLoding, setIsLoding] = useState(false);
   const [error, setError] = useState("");
@@ -28,6 +29,8 @@ const SuperState = ({ children }) => {
       value={{
         article,
         setArticle,
+        pageData,
+        setPageData,
         type,
         setType,
         isLoding,

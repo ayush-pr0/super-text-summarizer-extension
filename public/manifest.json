@@ -1,15 +1,21 @@
 {
-    "name": "My Extension",
+    "name": "SuperText Summarizer",
     "version": "1.0",
     "manifest_version": 3,
-    "description": "SuperText Summarizer",
-
-    "author": "developer@example.com",
+    "description": "Streamline your online reading experience. Extract concise summaries from web pages with a single click.",
+    "permissions": ["tabs"],
+    "host_permissions": ["https://*/*"],
+    "author": "@Ayush",
     "icons": {
         "32": "logo.png",
         "128": "logo.png" 
     },
-    "permissions": ["tabs"],
+    "content_scripts": [
+        {
+            "matches": ["https://*/*"],
+            "js": ["content.js"]
+        }
+    ],
     "action": {
         "default_title": "SuperText Summarizer",
         "default_popup": "index.html",

@@ -5,11 +5,13 @@ import Result from "./Body/Result";
 import superContext from "../utils/superContext";
 
 const Body = () => {
-  const { setAllArticles, setArticle } = useContext(superContext);
+  const { setAllArticles, setArticle, pageData, setPageData } =
+    useContext(superContext);
 
   // Load data from localStorage on mount
   useEffect(() => {
     getActiveTabURL();
+    getActiveTabData();
 
     const articlesFromLocalStorage = JSON.parse(
       localStorage.getItem("articles")
@@ -33,6 +35,23 @@ const Body = () => {
           : "unknown/url",
     });
   }
+
+  function getActiveTabData() {
+    console.log("getActiveTabData() called");
+    chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
+      if (changeInfo.status == "complete" && tab.active) {
+        const response = chrome.tabs.sendMessage(tabId, {
+          type: "GET_DATA",
+        });
+        const result = await response;
+
+        console.log(tab.url);
+        console.log(result.message);
+        setPageData(result.message);
+      }
+    });
+  }
+
   return (
     <section className="max-[450px]:mt-6 mt-16 w-full max-w-xl">
       <div className="flex flex-col w-full gap-2">
