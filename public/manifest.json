@@ -3,12 +3,15 @@
     "version": "1.0",
     "manifest_version": 3,
     "description": "Streamline your online reading experience. Extract concise summaries from web pages with a single click.",
-    "permissions": ["tabs"],
+    "permissions": ["tabs", "storage"],
     "host_permissions": ["https://*/*"],
     "author": "@Ayush",
     "icons": {
         "32": "logo.png",
         "128": "logo.png" 
+    },
+    "background": {
+        "service_worker": "background.js"
     },
     "content_scripts": [
         {

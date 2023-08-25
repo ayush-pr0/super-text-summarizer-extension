@@ -36,13 +36,15 @@ const InputForm = () => {
     const len = type == "Summary" ? 3 : 1;
     console.log(len);
 
-    const url = `https://article-extractor-and-summarizer.p.rapidapi.com/summarize?url=${article.url}&length=${len}`;
+    const url = `https://article-extractor-and-summarizer.p.rapidapi.com/summarize-text`;
     const options = {
-      method: "GET",
+      method: "POST",
       headers: {
+        "content-type": "application/json",
         "X-RapidAPI-Key": process.env.ARTICLE_SUMMARIZER_API,
         "X-RapidAPI-Host": "article-extractor-and-summarizer.p.rapidapi.com",
       },
+      body: JSON.stringify({ length: 3, text: pageData }),
     };
     console.log(pageData);
 

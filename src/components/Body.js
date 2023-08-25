@@ -5,11 +5,12 @@ import Result from "./Body/Result";
 import superContext from "../utils/superContext";
 
 const Body = () => {
-  const { setAllArticles, setArticle, pageData, setPageData } =
+  const { setAllArticles, setArticle, setPageData, setError } =
     useContext(superContext);
 
   // Load data from localStorage on mount
   useEffect(() => {
+    checkChangeInData();
     getActiveTabURL();
     getActiveTabData();
 
@@ -22,34 +23,35 @@ const Body = () => {
     }
   }, []);
 
-  async function getActiveTabURL() {
-    const tabs = await chrome.tabs.query({
-      currentWindow: true,
-      active: true,
-    });
+  async function checkChangeInData() {
+    const { dataFetchTabId } = await chrome.storage.local.get([
+      "dataFetchTabId",
+    ]);
+    const { currentTabId } = await chrome.storage.local.get(["currentTabId"]);
+    if (currentTabId != dataFetchTabId) {
+      setArticle({
+        url: "Unknown URL!! Reload Page",
+      });
+      setError(
+        "Data is not loaded or has changed due to tab switching. Please re-click on the extension again after the page loads or reload the page."
+      );
+      return;
+    }
+  }
 
+  async function getActiveTabURL() {
+    const { tabURL } = await chrome.storage.local.get(["tabURL"]);
     setArticle({
       url:
-        tabs[0].url.includes("http://") || tabs[0].url.includes("https://")
-          ? tabs[0].url
+        tabURL.includes("http://") || tabURL.includes("https://")
+          ? tabURL
           : "unknown/url",
     });
   }
 
-  function getActiveTabData() {
-    console.log("getActiveTabData() called");
-    chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
-      if (changeInfo.status == "complete" && tab.active) {
-        const response = chrome.tabs.sendMessage(tabId, {
-          type: "GET_DATA",
-        });
-        const result = await response;
-
-        console.log(tab.url);
-        console.log(result.message);
-        setPageData(result.message);
-      }
-    });
+  async function getActiveTabData() {
+    const { pageData } = await chrome.storage.local.get(["pageData"]);
+    setPageData(pageData);
   }
 
   return (
