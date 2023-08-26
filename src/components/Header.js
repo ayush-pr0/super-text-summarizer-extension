@@ -48,10 +48,6 @@ const Header = () => {
         <br />
         Summarizer
       </h1>
-      {/* <h2 className="desc">
-        Transforming Lengthy Articles into Clear and Concise Summaries -
-        Simplify Your Reading, One Article at a Time
-      </h2> */}
     </header>
   );
 };

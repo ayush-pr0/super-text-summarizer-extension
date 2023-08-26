@@ -1,11 +1,12 @@
 {
   "name": "summarizer",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel public/index.html",
-    "build": "parcel build public/index.html",
-    "test": "jest"
+    "start": "npm run copy && parcel ./src/index.html",
+    "build": "npm run build-copy && parcel build ./src/index.html",
+    "copy": "Xcopy /y /i \"public\\dev\\\" \"dist\"",
+    "build-copy": "Xcopy /y /i \"public\\minified\\\" \"dist\""
   },
   "author": "Ayush",
   "license": "ISC",

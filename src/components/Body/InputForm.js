@@ -19,11 +19,13 @@ const InputForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (article.url.length == 0 || article.url == "unknown/url") {
-      setError(
-        "Oop's..!! Url field is empty or unknown url found. Please re-click on the SuperText extension"
-      );
-      return;
+    if (!article.url || !pageData) {
+      const { error } = await chrome.storage.local.get(["error"]);
+      return error
+        ? setError(error)
+        : setError(
+            "Oop's..!! Data hasn't loaded or changed because of the tab switch. Please re-click on extension after page loads, or simply reload the page."
+          );
     }
     const existingArticle = allArticles.find(
       (item) => item.url == article.url && item.type == type
@@ -34,7 +36,6 @@ const InputForm = () => {
     setError("");
 
     const len = type == "Summary" ? 3 : 1;
-    console.log(len);
 
     const url = `https://article-extractor-and-summarizer.p.rapidapi.com/summarize-text`;
     const options = {
@@ -46,7 +47,6 @@ const InputForm = () => {
       },
       body: JSON.stringify({ length: 3, text: pageData }),
     };
-    console.log(pageData);
 
     try {
       const response = await fetch(url, options);
@@ -59,7 +59,6 @@ const InputForm = () => {
       }
 
       const data = await response.json();
-      console.log(data);
 
       if (data?.summary) {
         if (type == "Highlights") {
@@ -99,7 +98,7 @@ const InputForm = () => {
 
         <input
           type="url"
-          placeholder="WebPage link"
+          placeholder="Web Page URL"
           value={article.url}
           onChange={(e) => setArticle({ url: e.target.value })}
           onKeyDown={handleKeyDown}

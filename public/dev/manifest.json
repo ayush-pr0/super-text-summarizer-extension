@@ -4,7 +4,7 @@
     "manifest_version": 3,
     "description": "Streamline your online reading experience. Extract concise summaries from web pages with a single click.",
     "permissions": ["tabs", "storage"],
-    "host_permissions": ["https://*/*"],
+    "host_permissions": ["http://*/*", "https://*/*"],
     "author": "@Ayush",
     "icons": {
         "32": "logo.png",
@@ -15,7 +15,7 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://*/*"],
+            "matches": ["http://*/*","https://*/*"],
             "js": ["content.js"]
         }
     ],

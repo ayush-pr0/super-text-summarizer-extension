@@ -3,17 +3,21 @@ import InputForm from "./Body/InputForm";
 import History from "./Body/History";
 import Result from "./Body/Result";
 import superContext from "../utils/superContext";
+import useWebPage from "../utils/useWebPage";
 
 const Body = () => {
-  const { setAllArticles, setArticle, setPageData, setError } =
-    useContext(superContext);
+  const { setAllArticles } = useContext(superContext);
+  const { checkChangeInData, getActiveTabData } = useWebPage();
 
-  // Load data from localStorage on mount
+  async function loadWebPageData() {
+    const dataChanged = await checkChangeInData();
+    if (dataChanged == false) getActiveTabData();
+  }
+
   useEffect(() => {
-    checkChangeInData();
-    getActiveTabURL();
-    getActiveTabData();
+    loadWebPageData();
 
+    // Load data from localStorage on mount
     const articlesFromLocalStorage = JSON.parse(
       localStorage.getItem("articles")
     );
@@ -22,37 +26,6 @@ const Body = () => {
       setAllArticles(articlesFromLocalStorage);
     }
   }, []);
-
-  async function checkChangeInData() {
-    const { dataFetchTabId } = await chrome.storage.local.get([
-      "dataFetchTabId",
-    ]);
-    const { currentTabId } = await chrome.storage.local.get(["currentTabId"]);
-    if (currentTabId != dataFetchTabId) {
-      setArticle({
-        url: "Unknown URL!! Reload Page",
-      });
-      setError(
-        "Data is not loaded or has changed due to tab switching. Please re-click on the extension again after the page loads or reload the page."
-      );
-      return;
-    }
-  }
-
-  async function getActiveTabURL() {
-    const { tabURL } = await chrome.storage.local.get(["tabURL"]);
-    setArticle({
-      url:
-        tabURL.includes("http://") || tabURL.includes("https://")
-          ? tabURL
-          : "unknown/url",
-    });
-  }
-
-  async function getActiveTabData() {
-    const { pageData } = await chrome.storage.local.get(["pageData"]);
-    setPageData(pageData);
-  }
 
   return (
     <section className="max-[450px]:mt-6 mt-16 w-full max-w-xl">

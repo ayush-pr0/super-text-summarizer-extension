@@ -1,9 +1,4 @@
-// (() => {
-// document.addEventListener("load", function () {
-
-// });
-
-// })();
+// context-script.js
 
 window.onload = (event) => {
   chrome.runtime.onMessage.addListener(({ type }, sender, response) => {
@@ -16,7 +11,19 @@ window.onload = (event) => {
         )
           arr.push(e.innerText);
       });
-      response({ pageData: arr.join("\n\n").trim() });
+      if (!arr.length) {
+        response({
+          pageData: "",
+          status: "failure",
+          error: "Oop's..!! Unable to fetch data. Try it on some other day.",
+        });
+      } else {
+        response({
+          pageData: arr.join("\n\n").trim(),
+          status: "success",
+          error: "",
+        });
+      }
     }
   });
 };
