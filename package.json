@@ -5,8 +5,8 @@
   "scripts": {
     "start": "npm run copy && parcel ./src/index.html",
     "build": "npm run build-copy && parcel build ./src/index.html",
-    "copy": "Xcopy /y /i \"public\\dev\\\" \"dist\"",
-    "build-copy": "Xcopy /y /i \"public\\minified\\\" \"dist\""
+    "copy": "Xcopy /y /i \"static\\dev\\\" \"dist\"",
+    "build-copy": "Xcopy /y /i \"static\\minified\\\" \"dist\""
   },
   "author": "Ayush",
   "license": "ISC",

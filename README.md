@@ -76,7 +76,7 @@ Keep track of your reading history, access it whenever you need, and stay inform
 
    3. Get your free API Key at [https://rapidapi.com/restyler/api/article-extractor-and-summarizer](https://rapidapi.com/restyler/api/article-extractor-and-summarizer)
 
-   4. Create .env and enter your API key
+   4. Create `.env` in root directory and enter your API key
 
       ```js
       ARTICLE_SUMMARIZER_API = "ENTER_YOUR_API_KEY_HERE";
@@ -85,8 +85,8 @@ Keep track of your reading history, access it whenever you need, and stay inform
    5. Develop/Built Project
 
       ```
-      "copy": "cp -r \"public\\dev\\\" \"dist\"",
-      "build-copy": "cp -r \"public\\minified\\\" \"dist\""
+      "copy": "cp -r \"static\\dev\\\" \"dist\"",
+      "build-copy": "cp -r \"static\\minified\\\" \"dist\""
       ```
 
       > **_NOTE:_** If you are using Mac OS or Linux OS then first go to `packege.json` file, apply the above changes.
