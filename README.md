@@ -68,21 +68,26 @@ Keep track of your reading history, access it whenever you need, and stay inform
       git clone https://github.com/ayush-pr0/super-text-summarizer-extension
       ```
 
-   2. Install NPM packages
+   2. Change directory to `super-text-summarizer-extension`
+      ```sh
+      cd super-text-summarizer-extension
+      ```
+
+   3. Install NPM packages
 
       ```sh
       npm install
       ```
 
-   3. Get your free API Key at [https://rapidapi.com/restyler/api/article-extractor-and-summarizer](https://rapidapi.com/restyler/api/article-extractor-and-summarizer)
+   4. Get your free API Key at [https://rapidapi.com/restyler/api/article-extractor-and-summarizer](https://rapidapi.com/restyler/api/article-extractor-and-summarizer)
 
-   4. Create `.env` in root directory and enter your API key
+   5. Create `.env` in root directory and enter your API key
 
       ```js
       ARTICLE_SUMMARIZER_API = "ENTER_YOUR_API_KEY_HERE";
       ```
 
-   5. Develop/Built Project
+   6. Develop/Built Project
 
       ```
       "copy": "cp -r \"static\\dev\\\" \"dist\"",
