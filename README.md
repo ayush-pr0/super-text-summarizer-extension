@@ -15,7 +15,7 @@ Keep track of your reading history, access it whenever you need, and stay inform
    ### 📃Extract Summary & copy to 📋clipboard
    <br/>
 
-   ![summary](summary.gif)
+   ![summary](public/summary.gif)
 
    - Effortlessly extract and summarize web page content with the SuperText extension.
    - It condenses lengthy articles into a concise format, allowing you to quickly copy the summarized form to your clipboard with a single click!
@@ -25,7 +25,7 @@ Keep track of your reading history, access it whenever you need, and stay inform
    ### 🔦Extract Highlights & copy to 📋clipboard
    <br/>
 
-   ![highlights](highlights.gif)
+   ![highlights](public/highlights.gif)
 
    - Effortlessly Extracts and provides highlights from web page content. It condenses lengthy articles and delivers the key points in bullet form.
    - You can easily copy the highlights to your clipboard with a single click!
@@ -35,7 +35,7 @@ Keep track of your reading history, access it whenever you need, and stay inform
    ### 🔍Search History Tracking & 🗑️Remove Data:
    <br/>
 
-   ![history-clear](history_clear.gif)
+   ![history-clear](public/history_clear.gif)
 
    - Stores and displays your recent search history for summaries and highlights. Easily revisit your past queries for quick reference.
    - Wipe both your current search data and entire history, putting you in control of your browsing experience.
@@ -45,7 +45,7 @@ Keep track of your reading history, access it whenever you need, and stay inform
    ### 🌐Real-Time Online Status Indicator
    <br/>
 
-   ![online-offline](online_offline.gif)
+   ![online-offline](public/online_offline.gif)
 
    - SuperText features a real-time online and offline status indicator, conveniently displayed at the top of your interface. Stay connected effortlessly!
 
