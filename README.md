@@ -12,119 +12,124 @@ Keep track of your reading history, access it whenever you need, and stay inform
 
 ## 🚀Features
 
-   ### 📃Extract Summary & copy to 📋clipboard
+### 📃Extract Summary & copy to 📋clipboard
+
    <br/>
 
-   ![summary](public/summary.gif)
+![summary](public/summary.gif)
 
-   - Effortlessly extract and summarize web page content with the SuperText extension.
-   - It condenses lengthy articles into a concise format, allowing you to quickly copy the summarized form to your clipboard with a single click!
+- Effortlessly extract and summarize web page content with the SuperText extension.
+- It condenses lengthy articles into a concise format, allowing you to quickly copy the summarized form to your clipboard with a single click!
 
    <hr/>
 
-   ### 🔦Extract Highlights & copy to 📋clipboard
+### 🔦Extract Highlights & copy to 📋clipboard
+
    <br/>
 
-   ![highlights](public/highlights.gif)
+![highlights](public/highlights.gif)
 
-   - Effortlessly Extracts and provides highlights from web page content. It condenses lengthy articles and delivers the key points in bullet form.
-   - You can easily copy the highlights to your clipboard with a single click!
+- Effortlessly Extracts and provides highlights from web page content. It condenses lengthy articles and delivers the key points in bullet form.
+- You can easily copy the highlights to your clipboard with a single click!
 
    <hr/>
 
-   ### 🔍Search History Tracking & 🗑️Remove Data:
+### 🔍Search History Tracking & 🗑️Remove Data:
+
    <br/>
 
-   ![history-clear](public/history_clear.gif)
+![history-clear](public/history_clear.gif)
 
-   - Stores and displays your recent search history for summaries and highlights. Easily revisit your past queries for quick reference.
-   - Wipe both your current search data and entire history, putting you in control of your browsing experience.
+- Stores and displays your recent search history for summaries and highlights. Easily revisit your past queries for quick reference.
+- Wipe both your current search data and entire history, putting you in control of your browsing experience.
 
    <hr/>
 
-   ### 🌐Real-Time Online Status Indicator
+### 🌐Real-Time Online Status Indicator
+
    <br/>
 
-   ![online-offline](public/online_offline.gif)
+![online-offline](public/online_offline.gif)
 
-   - SuperText features a real-time online and offline status indicator, conveniently displayed at the top of your interface. Stay connected effortlessly!
+- SuperText features a real-time online and offline status indicator, conveniently displayed at the top of your interface. Stay connected effortlessly!
 
    <br/>
 
 ## 🪄Setup and Installation
 
-   ### 📌Prerequisites
+### 📌Prerequisites
 
-   - NPM needs to be installed on your system in order to build the extension. If it's not already installed, please install it.
-   - You must have the Chrome Browser installed on your system to run the extension. If it's not already installed, please install it.
-
-   <br/>
-
-   ### ⚙️Setup
-
-   1. Clone the repo
-
-      ```sh
-      git clone https://github.com/ayush-pr0/super-text-summarizer-extension
-      ```
-
-   2. Change directory to `super-text-summarizer-extension`
-      ```sh
-      cd super-text-summarizer-extension
-      ```
-
-   3. Install NPM packages
-
-      ```sh
-      npm install
-      ```
-
-   4. Get your free API Key at [https://rapidapi.com/restyler/api/article-extractor-and-summarizer](https://rapidapi.com/restyler/api/article-extractor-and-summarizer)
-
-   5. Create `.env` in root directory and enter your API key
-
-      ```js
-      ARTICLE_SUMMARIZER_API = "ENTER_YOUR_API_KEY_HERE";
-      ```
-
-   6. Develop/Built Project
-
-      ```
-      "copy": "cp -r \"static\\dev\\\" \"dist\"",
-      "build-copy": "cp -r \"static\\minified\\\" \"dist\""
-      ```
-
-      > **_NOTE:_** If you are using Mac OS or Linux OS then first go to `packege.json` file, apply the above changes.
-
-      <br/>
-
-      ```sh
-      # Start project in development mode
-      npm start
-
-      #or
-
-      # Build project in production mode (Recommended to create extension)
-      npm run build
-      ```
-
-   > 🎉 Voila! The SuperText extension has been created successfully!! Now `dist` folder contains all the required files for the SuperText extension to be installed in your Chrome browser. You can rename the `dist` folder or relocate it to a different directory if you wish.
+- NPM needs to be installed on your system in order to build the extension. If it's not already installed, please install it.
+- You must have the Chrome Browser installed on your system to run the extension. If it's not already installed, please install it.
 
    <br/>
 
-   ### 🔧Installation
-   
-   1. Open Chrome browser. 
+### ⚙️Setup
 
-   2. Go to `chrome://extensions/`.
+1.  Clone the repo
 
-   3. At the top right, turn on Developer mode.
+    ```sh
+    git clone https://github.com/ayush-pr0/super-text-summarizer-extension
+    ```
 
-   4. Click Load unpacked.
+2.  Change directory to `super-text-summarizer-extension`
 
-   5. Find and select the app or extension folder.
+    ```sh
+    cd super-text-summarizer-extension
+    ```
 
-   > 🎉 SuperText extension installed successfully!! Start using super power of SuperText and say goodbye to information overload and hello to effortless comprehension.
+3.  Install NPM packages
+
+    ```sh
+    npm install
+    ```
+
+4.  Get your free API Key at [Rapid API: Article Extractor and Summarizer](https://rapidapi.com/restyler/api/article-extractor-and-summarizer)
+
+5.  Create `.env` in root directory and enter your API key
+
+    ```js
+    ARTICLE_SUMMARIZER_API = ENTER_YOUR_API_KEY_HERE
+    ```
+
+6.  Develop/Built Project
+
+    ```js
+    "copy": "cp -r \"static\\dev\\\" \"dist\"",
+    "build-copy": "cp -r \"static\\minified\\\" \"dist\""
+    ```
+
+    > **_NOTE:_** If you are using Mac OS or Linux OS then first go to `packege.json` file, apply the above changes.
+
+    <br/>
+
+    ```sh
+    # Start project in development mode
+    npm start
+
+    #or
+
+    # Build project in production mode (Recommended to create extension)
+    npm run build
+    ```
+
+> 🎉 Voila! The SuperText extension has been created successfully!! Now `dist` folder contains all the required files for the SuperText extension to be installed in your Chrome browser. You can rename the `dist` folder or relocate it to a different directory if you wish.
+
+   <br/>
+
+### 🔧Installation
+
+1.  Open Chrome browser.
+
+2.  Go to `chrome://extensions/`.
+
+3.  At the top right, turn on Developer mode.
+
+4.  Click Load unpacked.
+
+5.  Find and select the app or extension folder.
+
+> 🎉 SuperText extension installed successfully!! Start using super power of SuperText and say goodbye to information overload and hello to effortless comprehension.
 
 <br/>
 
